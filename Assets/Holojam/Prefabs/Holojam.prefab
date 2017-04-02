@@ -136,6 +136,8 @@ MonoBehaviour:
   sendScope: Unity
   rate: 3
   verboseLogs: 0
+  ediff: 0
+  sdiff: 0
   sentPPS: 0
   receivedPPS: 0
   threadData: []
