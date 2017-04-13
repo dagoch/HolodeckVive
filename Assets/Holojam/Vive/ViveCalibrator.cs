@@ -76,10 +76,10 @@ namespace Holojam.Vive {
       posesAction = SteamVR_Events.NewPosesAction(OnNewPoses);
       module = GetComponent<ViveModule>() as ViveModule;
 
-      if (!Valid) {
-        Debug.Log("Holojam.Vive.ViveCalibrator: Build state not valid for calibration");
-        return;
-      }
+      //if (!Valid) {
+      //  Debug.Log("Holojam.Vive.ViveCalibrator: Build state not valid for calibration");
+      //  return;
+      // }
 
       if (!module.cameraRig) {
         Network.RemoteLogger.Log(
@@ -99,6 +99,7 @@ namespace Holojam.Vive {
     /// Wait for the lighthouses to become tracked before initiating a calibration.
     /// </summary>
     IEnumerator WaitToCalibrate() {
+      yield return new WaitForSeconds(1f); //Delay to allow bootup.
       while (!ready) yield return null;
       Calibrate();
     }

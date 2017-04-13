@@ -6,7 +6,7 @@ using System;
 
 public class SceneChanger : MonoBehaviour, IGlobalApplicationMenuPressDownHandler {
 
-    public void OnGlobalApplicationMenuPressDown(ViveControllerModule.EventData eventData)
+    public void OnGlobalApplicationMenuPressDown(VREventData eventData)
     {
         index = (index + 1) % 4;
         changemodel();

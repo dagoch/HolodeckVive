@@ -48,7 +48,7 @@ public class ActorAvatar : Holojam.Tools.Actor {
   }
 
   protected override void FadeOut() {
-    head.gameObject.SetActive(false);
+    //head.gameObject.SetActive(false);
   }
 
   void Start() { ApplyMotif(); }
