@@ -293,6 +293,16 @@
     <None Include="Assets\Holojam\SampleConfig.xml" />
     <None Include="Assets\InputSystems-master\Examples\Teleportation\ScreenFader\Unlit Transparent HUD.shader" />
     <None Include="Assets\InputSystems-master\README.txt" />
+    <None Include="Assets\Model\Alice Models\39126_Toon_PC\BLENDSWAP_LICENSE.txt" />
+    <None Include="Assets\Model\Alice Models\50872_antique_chair_\BLENDSWAP_LICENSE.txt" />
+    <None Include="Assets\Model\Alice Models\50957_English_table_19th__entury\BLENDSWAP_LICENSE.txt" />
+    <None Include="Assets\Model\Alice Models\56136_Coffee_splash_on_cup\BLENDSWAP_LICENSE.txt" />
+    <None Include="Assets\Model\Alice Models\57903_A_cup_full\BLENDSWAP_LICENSE.txt" />
+    <None Include="Assets\Model\Alice Models\61128_Computer_mouse\BLENDSWAP_LICENSE.txt" />
+    <None Include="Assets\Model\Alice Models\68922_utah_teapot\BLENDSWAP_LICENSE.txt" />
+    <None Include="Assets\Model\Alice Models\69351_Kitchen_Table\BLENDSWAP_LICENSE.txt" />
+    <None Include="Assets\Model\Alice Models\81635_Set_of_Computer_Components\License.txt" />
+    <None Include="Assets\Model\Alice Models\81635_Set_of_Computer_Components\computer parts\textures list.txt" />
     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\Silhouette.shader" />

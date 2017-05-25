@@ -1,0 +1,160 @@
+fileFormatVersion: 2
+guid: 028a91f853cef4151982b332801046c2
+timeCreated: 1495726943
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: 2_5inch_HDD_001
+    100002: 2_5inch_HDD_002
+    100004: 2_5inch_HDD_003
+    100006: 2_5inch_HDD_empty
+    100008: 2_5inch_SSD
+    100010: 3_5inch_HDD_001
+    100012: 3_5inch_HDD_002
+    100014: 3_5inch_HDD_003
+    100016: 3_5inch_HDD_004
+    100018: 3_5inch_HDD_empty
+    100020: //RootNode
+    100022: CPU
+    100024: FAN_003
+    100026: FAN_004
+    100028: HeatSink
+    100030: PSU
+    100032: RAM
+    100034: SATA_Connector
+    400000: 2_5inch_HDD_001
+    400002: 2_5inch_HDD_002
+    400004: 2_5inch_HDD_003
+    400006: 2_5inch_HDD_empty
+    400008: 2_5inch_SSD
+    400010: 3_5inch_HDD_001
+    400012: 3_5inch_HDD_002
+    400014: 3_5inch_HDD_003
+    400016: 3_5inch_HDD_004
+    400018: 3_5inch_HDD_empty
+    400020: //RootNode
+    400022: CPU
+    400024: FAN_003
+    400026: FAN_004
+    400028: HeatSink
+    400030: PSU
+    400032: RAM
+    400034: SATA_Connector
+    2300000: 2_5inch_HDD_001
+    2300002: 2_5inch_HDD_002
+    2300004: 2_5inch_HDD_003
+    2300006: 2_5inch_SSD
+    2300008: 3_5inch_HDD_001
+    2300010: 3_5inch_HDD_002
+    2300012: 3_5inch_HDD_003
+    2300014: 3_5inch_HDD_004
+    2300016: CPU
+    2300018: FAN_003
+    2300020: FAN_004
+    2300022: HeatSink
+    2300024: PSU
+    2300026: RAM
+    2300028: SATA_Connector
+    3300000: 2_5inch_HDD_001
+    3300002: 2_5inch_HDD_002
+    3300004: 2_5inch_HDD_003
+    3300006: 2_5inch_SSD
+    3300008: 3_5inch_HDD_001
+    3300010: 3_5inch_HDD_002
+    3300012: 3_5inch_HDD_003
+    3300014: 3_5inch_HDD_004
+    3300016: CPU
+    3300018: FAN_003
+    3300020: FAN_004
+    3300022: HeatSink
+    3300024: PSU
+    3300026: RAM
+    3300028: SATA_Connector
+    4300000: FAN_004
+    4300002: FAN_003
+    4300004: PSU
+    4300006: HeatSink
+    4300008: CPU
+    4300010: 2_5inch_SSD
+    4300012: RAM
+    4300014: SATA_Connector
+    4300016: 2_5inch_HDD_001
+    4300018: 2_5inch_HDD_002
+    4300020: 2_5inch_HDD_003
+    4300022: 3_5inch_HDD_001
+    4300024: 3_5inch_HDD_002
+    4300026: 3_5inch_HDD_003
+    4300028: 3_5inch_HDD_004
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

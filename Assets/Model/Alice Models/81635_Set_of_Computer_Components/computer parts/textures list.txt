@@ -1,0 +1,20 @@
+Electronics0007_L.jpg (RAM):
+http://www.textures.com/download/electronics0007/18241
+
+Electronics0020_2_L.jpg (CPU_bottom):
+http://www.textures.com/download/electronics0020/21789
+
+Electronics0024***.jpg (PSU textures):
+http://www.textures.com/download/electronics0024/24682
+
+
+Note: About the texture of PSU's back...
+If you have lost the texture by some accidents, follow these steps to recover the texture:
+
+1. Open some image editor like Photoshop, and add the file "Electronics0024_4_L.jpg" downloaded from Textures.com.
+
+2. Create a new layer, paste "Electronics0024_4_L_Layer1" at the top of left corner.
+
+3. Add "Electronics0024_4_L_Layer2" at the top of right corner on the same way of 2.
+
+4. Save the whole image as "Electronics0024_4_L_edited.jpg", and use it as the texture in Blender.
