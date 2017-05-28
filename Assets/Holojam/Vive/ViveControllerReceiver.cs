@@ -80,6 +80,7 @@ namespace Holojam.Vive {
     /// <param name="id">The id of the button.</param>
     /// <returns>Whether or not the button has been pressed down this frame.</returns>
     public bool GetPressDown(EVRButtonId id) {
+      //Debug.Log("GetPressDown");
       int index = buttonToInts[id];
       return previousFrame[index] == 0 && currentFrame[index] == 1;
     }
@@ -90,6 +91,7 @@ namespace Holojam.Vive {
     /// <param name="id">The id of the button.</param>
     /// <returns>Whether or not the button is being held this frame.</returns>
     public bool GetPress(EVRButtonId id) {
+      //Debug.Log("GetPress");
       int index = buttonToInts[id];
       return previousFrame[index] == 1 && currentFrame[index] == 1;
     }
@@ -100,6 +102,7 @@ namespace Holojam.Vive {
     /// <param name="id">THe id of the button.</param>
     /// <returns>Whether or not the button was released this frame.</returns>
     public bool GetPressUp(EVRButtonId id) {
+      //Debug.Log("press up called");
       int index = buttonToInts[id];
       return previousFrame[index] == 1 && currentFrame[index] == 0;
     }

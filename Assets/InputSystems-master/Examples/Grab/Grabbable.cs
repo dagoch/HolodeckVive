@@ -43,6 +43,7 @@ public class Grabbable : MonoBehaviour, IGlobalTriggerPressSetHandler, IPointerT
 
 
   void Grab(BaseInputModule module) {
+    Debug.Log("Got Grab" + gameObject.name);
     //Bind the module to this object.
     grabbingModule = module;
     //Save the offset between the module and this object. Undo the current rotation of the module
@@ -69,15 +70,19 @@ public class Grabbable : MonoBehaviour, IGlobalTriggerPressSetHandler, IPointerT
   }
 
   void Release(BaseInputModule module) {
-    if (rbody) {
+    Debug.Log("Got Release" + gameObject.name);
+    if (rbody)
+    {
       rbody.isKinematic = false;
 
       Vector3 force = Vector3.zero;
-      for (int i = 1; i < savedPositions.Count; i++) {
+      for (int i = 1; i < savedPositions.Count; i++)
+      {
         Vector3 delta = savedPositions[i] - savedPositions[i - 1];
 
         //Ignore spurious changes (sudden jumps caused by external scripts or states)
-        if (delta.magnitude > 1f) {
+        if (delta.magnitude > 1f)
+        {
           continue;
         }
 

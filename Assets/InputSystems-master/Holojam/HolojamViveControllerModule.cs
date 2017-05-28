@@ -96,13 +96,14 @@ namespace FRL.IO {
 
       //Press
       foreach (EVRButtonId button in pressIds) {
-        if (GetPressDown(button)) {
+        
+        if (GetPressDown(button)) {//Debug.Log("in HandleButtons, pressdown = " + button);
           ExecutePressDown(button);
           ExecuteGlobalPressDown(button);
-        } else if (GetPress(button)) {
+        } else if (GetPress(button)) {//Debug.Log("in HandleButtons, press = " + button);
           ExecutePress(button);
           ExecuteGlobalPress(button);
-        } else if (GetPressUp(button)) {
+        } else if (GetPressUp(button)) {//Debug.Log("in HandleButtons, pressup = " + button);
           ExecutePressUp(button);
           ExecuteGlobalPressUp(button);
         }
@@ -110,13 +111,14 @@ namespace FRL.IO {
 
       //Touch
       foreach (EVRButtonId button in touchIds) {
-        if (GetTouchDown(button)) {
+
+        if (GetTouchDown(button)) {        //Debug.Log("in HandleButtons, touchdown = " + button);
           ExecuteTouchDown(button);
           ExecuteGlobalTouchDown(button);
-        } else if (GetTouch(button)) {
+        } else if (GetTouch(button)) {        //Debug.Log("in HandleButtons, touch = " + button);
           ExecuteTouch(button);
           ExecuteGlobalTouch(button);
-        } else if (GetTouchUp(button)) {
+        } else if (GetTouchUp(button)) {        //Debug.Log("in HandleButtons, touchup = " + button);
           ExecuteTouchUp(button);
           ExecuteGlobalTouchUp(button);
         }
@@ -482,6 +484,7 @@ namespace FRL.IO {
     }
 
     private bool GetPressDown(EVRButtonId button) {
+    //  Debug.Log("GetPressDown called");
       return controller.GetPressDown(button);
     }
 
