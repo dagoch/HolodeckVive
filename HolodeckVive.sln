@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio for Mac
+# Visual Studio 2015
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HolodeckVive.Plugins", "HolodeckVive.Plugins.csproj", "{81C50E6A-7FC7-1BB6-B6AC-41B47CB48540}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HolodeckVive", "HolodeckVive.csproj", "{D77A76F3-19CA-BB46-C9D1-7AEB5DD415FE}"
