@@ -60,14 +60,14 @@ public class VisibleToggler : Synchronizable, IGlobalGripPressDownHandler {
     {
       foreach (GameObject target in targets)
       {
-        target.GetComponent<MeshRenderer>().enabled = true;
+        target.SetActive(true);
       }
     }
     else
     {
       foreach (GameObject target in targets)
       {
-        target.GetComponent<MeshRenderer>().enabled = false;
+        target.SetActive(false);
       }
     }
   }

@@ -13,25 +13,16 @@ public class Grabbing : MonoBehaviour, IGlobalTriggerPressDownHandler {
 
   Transform heldObject;
 
-  void update()
-  {
-    //if (ViveControllerReciever.GetClick(3)) {
-    //  //query HandToggler script to see if I own this controller
-    //  //no point writing it all twice
-    //  Debug.Log("Trigger pressed");
-    //  if (GetComponent<HandToggler>().Host)
-    //  {
-    //    Debug.Log("Trigger pressed to grab");
-    //    isGrabbing = true;
-    //    //if I'm already holding something, let it go
-    //    if (isHolding)
-    //    {
-    //      Debug.Log("letting go");
-    //      heldObject.parent = null;
-    //      isHolding = false;
-    //    }
-    //  }
-    //}
+  private ViveControllerReceiver vcreceiver;
+
+  //Am I hosting this object? This will return true, if the index of the connected
+  //ViveControllerReceiver matches the build index.
+  //This way, each actor will control only their hands.
+  public bool Host {
+    get {
+      if (!vcreceiver) vcreceiver = GetComponent<ViveControllerReceiver>();
+      return vcreceiver.index == Holojam.Tools.BuildManager.BUILD_INDEX;
+    }
   }
 
   //Boolean stayed = false;
@@ -57,7 +48,7 @@ public class Grabbing : MonoBehaviour, IGlobalTriggerPressDownHandler {
     //query HandToggler script to see if I own this controller
     //no point writing it all twice
     //Debug.Log("Trigger pressed");
-		if (GetComponent<HandToggler>().Host) {
+		if (Host) {
 			Debug.Log ("Trigger pressed to grab");
 			isGrabbing = !isGrabbing;
 			//if I'm already holding something, let it go
