@@ -153,6 +153,9 @@
     <Compile Include="Assets\Scripts\Extensions\ListExtension.cs" />
     <Compile Include="Assets\Scripts\Extensions\TransformExtensions.cs" />
     <Compile Include="Assets\Scripts\ISceneController.cs" />
+    <Compile Include="Assets\Scripts\MoveUpAndDown.cs" />
+    <Compile Include="Assets\Scripts\ScaleEnvironment.cs" />
+    <Compile Include="Assets\Scripts\ScaleSizeWithHeight.cs" />
     <Compile Include="Assets\Scripts\SceneChanger.cs" />
     <Compile Include="Assets\Scripts\TeaPartySceneController.cs" />
     <Compile Include="Assets\Scripts\TheRoomSceneController.cs" />
