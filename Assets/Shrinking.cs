@@ -7,17 +7,26 @@ using Holojam.Vive;
 using System;
 
 
-public class SizeToggler : Synchronizable, IGlobalTouchpadPressDownHandler, IGlobalTouchpadPressUpHandler
+public class Shrinking : Synchronizable, IGlobalTouchpadPressDownHandler
 {
 
   //GameObjects whose scale will be changed 
   public List<GameObject> targets = new List<GameObject>();
-  //Public modifier which determines how much the scale will change each synchronization
-  public float scaleChangeModifier = 0.1f;
-  public float minScale = 0.0f;
+  //Public modifier which determines the final fraction of the user's original size that the shrinking will stop at
+  public float finalFraction = 0.0f;
   float[] originalScales;
+  float[] minScales;
+  //this will be set to the standing height of the user before they begin "shrinking"
+  float maxHeight;
+  //the user will continue to shrink until this height is reached
+  float minHeight;
+  //the current fraction of the maximum height/scale the user is on
+  float currentFraction;
+  //whether or not the user is shrinking
+  int shrinking = 0;
 
-  int scale = 1;
+  public Transform userHeadTransform;
+
   int pressing = 0;
 
   //Most of the following pasted from HandToggler.
@@ -26,12 +35,26 @@ public class SizeToggler : Synchronizable, IGlobalTouchpadPressDownHandler, IGlo
   void Start()
   {
     //goes through all the given GameObjects and records their original scales in an array
+    //also determines their individual minimum scales by way of the final scale fraction given
     originalScales = new float[targets.Capacity];
-    foreach(GameObject target in targets)
+    minScales = new float[targets.Capacity];
+    foreach (GameObject target in targets)
     {
       originalScales[targets.LastIndexOf(target)] = target.transform.localScale.x;
+      minScales[targets.LastIndexOf(target)] = target.transform.localScale.x * finalFraction;
     }
   }
+
+  //Linecasts vertically from given head transform to 0. 
+  //This will (hopefully) work so long as the floor collider remains above 0 on the Y-axis. 
+  //float getCurrentHeight()
+  //{
+    //RaycastHit rc;
+    //if (Physics.Linecast(userHeadTransform, new Vector3(userHeadTransform.position.x, 0, userHeadTransform.position.z), out rc))
+    //{
+      //return rc.distance;
+    //s}
+  //}
 
   //Am I hosting this object? This will return true, if the index of the connected
   //ViveControllerReceiver matches the build index.
@@ -48,7 +71,7 @@ public class SizeToggler : Synchronizable, IGlobalTouchpadPressDownHandler, IGlo
   public override string Label {
     get {
       //create a unique label for this object, based off of it's gameobject name + "-hand",
-      return this.name + "-resizer";
+      return this.name + "-shrinker";
     }
   }
 
@@ -62,64 +85,43 @@ public class SizeToggler : Synchronizable, IGlobalTouchpadPressDownHandler, IGlo
     if (Host)
     {
       //I am hosting this object. What do I do?
-      data.ints[0] = scale;
-      data.ints[1] = pressing;
+     // data.ints[0] = scale;
+      data.ints[1] = shrinking;
     }
     else
     {
       //I am not hosting this object. What do I do?
-      scale = data.ints[0];
-      pressing = data.ints[1];
+      //scale = data.ints[0];
+      shrinking = data.ints[1];
     }
-    if (pressing == 1)
+    if (shrinking == 1)
     {
       foreach (GameObject target in targets)
       {
         float originalScale = originalScales[targets.LastIndexOf(target)];
-        Transform tr = target.GetComponent<Transform>();
-        if (tr.localScale.x >= minScale && tr.localScale.x <= originalScale)
-        {
-          tr.localScale += new Vector3(scaleChangeModifier * scale, scaleChangeModifier * scale, scaleChangeModifier * scale);
-        }
-        else
-        {
-          if (tr.localScale.x < minScale)
-          {
-            tr.localScale = new Vector3(minScale, minScale, minScale);
-          }
-          else
-          {
-            tr.localScale = new Vector3(originalScale, originalScale, originalScale);
-          }
-        }
+        //Transform tr = target.GetComponent<Transform>();
       }
     }
   }
 
 
-  
 
+  //toggle "shrinking" - sets current height to max height when "shrinking" begins
   void IGlobalTouchpadPressDownHandler.OnGlobalTouchpadPressDown(VREventData eventData)
   {
     if (Host)
     {
-      pressing = 1;
-      if (eventData.touchpadAxis.y > 0)
+      if (shrinking == 0)
       {
-        scale = 1;
+        //maxHeight = getCurrentHeight();
+        shrinking = 1;
+        minHeight = maxHeight * finalFraction;
+        currentFraction = maxHeight / minHeight;
       }
       else
       {
-        scale = -1;
+        shrinking = 0;
       }
-    }
-  }
-
-  void IGlobalTouchpadPressUpHandler.OnGlobalTouchpadPressUp(VREventData eventData)
-  {
-    if (Host)
-    {
-      pressing = 0;
     }
   }
 }

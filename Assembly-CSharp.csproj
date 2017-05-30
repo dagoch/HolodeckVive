@@ -103,6 +103,7 @@
      <Compile Include="Assets\InputSystems-master\Vive\IViveHandler.cs" />
      <Compile Include="Assets\InputSystems-master\Vive\ViveControllerModule.cs" />
      <Compile Include="Assets\Scripts\SceneChanger.cs" />
+     <Compile Include="Assets\Shrinking.cs" />
      <Compile Include="Assets\SizeToggler.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
