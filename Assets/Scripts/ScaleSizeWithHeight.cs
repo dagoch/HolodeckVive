@@ -65,6 +65,7 @@ public class ScaleSizeWithHeight : Synchronizable, IGlobalTriggerPressDownHandle
             if (_TriggerDown) {
                 var percent = Mathf.Clamp(HeadTransform.position.y / _StartY, LowerLimit, 1f);
                 HeadTransform.localScale = Vector3.one * percent;
+                Debug.Log("sending data and stuff!!!");
             }
             data.vector3s[0] = HeadTransform.localScale;
             //data.ints[0] = (_TriggerDown) ? 1 : 0;
@@ -76,6 +77,7 @@ public class ScaleSizeWithHeight : Synchronizable, IGlobalTriggerPressDownHandle
     }
 
     void IGlobalTriggerPressDownHandler.OnGlobalTriggerPressDown(VREventData eventData) {
+        Debug.Log("trigger is down");
         if (Host) {
             _TriggerDown = true;
             _StartY = HeadTransform.position.y;

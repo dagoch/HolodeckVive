@@ -342,7 +342,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c401ea1e5b8b7f14d88fea979ded1297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  module: {fileID: 76495181}
 --- !u!114 &76495180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,8 +367,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc98c3358e149da47bf9d809abd77495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactTag: 
-  interactDistance: 10
 --- !u!114 &76495182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1202,7 +1199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c401ea1e5b8b7f14d88fea979ded1297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  module: {fileID: 819382127}
 --- !u!114 &819382126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1228,8 +1224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc98c3358e149da47bf9d809abd77495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactTag: 
-  interactDistance: 10
 --- !u!114 &819382128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1443,6 +1437,38 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 462518, guid: 22e08f06fa7a14fb8b9709b8dda83228, type: 2}
   m_PrefabInternal: {fileID: 849341824}
+--- !u!21 &911859845
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &965397468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1588,7 +1614,7 @@ Prefab:
     - target: {fileID: 114615662255141442, guid: 957a810931a9c4b9a8423081101befd7,
         type: 2}
       propertyPath: preview
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114615662255141442, guid: 957a810931a9c4b9a8423081101befd7,
         type: 2}
@@ -1598,7 +1624,7 @@ Prefab:
     - target: {fileID: 114615662255141442, guid: 957a810931a9c4b9a8423081101befd7,
         type: 2}
       propertyPath: previewIndex
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114748726467797520, guid: 957a810931a9c4b9a8423081101befd7,
         type: 2}
@@ -1673,7 +1699,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c401ea1e5b8b7f14d88fea979ded1297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  module: {fileID: 1192689548}
 --- !u!114 &1192689547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1699,8 +1724,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc98c3358e149da47bf9d809abd77495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactTag: 
-  interactDistance: 10
 --- !u!114 &1192689549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2147,38 +2170,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &1364105925
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1380968057
 GameObject:
   m_ObjectHideFlags: 0
@@ -2413,7 +2404,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c401ea1e5b8b7f14d88fea979ded1297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  module: {fileID: 0}
 --- !u!1 &1420070425
 GameObject:
   m_ObjectHideFlags: 0
@@ -2459,7 +2449,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c401ea1e5b8b7f14d88fea979ded1297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  module: {fileID: 1420070429}
 --- !u!114 &1420070428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2485,8 +2474,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc98c3358e149da47bf9d809abd77495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactTag: 
-  interactDistance: 10
 --- !u!114 &1420070430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2545,11 +2532,11 @@ Prefab:
     - target: {fileID: 3380982, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1562273579}
+      objectReference: {fileID: 1620045167}
     - target: {fileID: 2348914, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1364105925}
+      objectReference: {fileID: 911859845}
     - target: {fileID: 420908, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
@@ -2674,7 +2661,39 @@ MeshFilter:
 Transform:
   m_PrefabParentObject: {fileID: 442768, guid: 22e08f06fa7a14fb8b9709b8dda83228, type: 2}
   m_PrefabInternal: {fileID: 1645811578}
---- !u!43 &1562273579
+--- !u!1 &1590074756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1590074757}
+  m_Layer: 0
+  m_Name: Actors
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1590074757
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1590074756}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 459326840}
+  - {fileID: 206579059}
+  - {fileID: 849341825}
+  - {fileID: 1645811579}
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!43 &1620045167
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2802,38 +2821,6 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
---- !u!1 &1590074756
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1590074757}
-  m_Layer: 0
-  m_Name: Actors
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1590074757
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1590074756}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 459326840}
-  - {fileID: 206579059}
-  - {fileID: 849341825}
-  - {fileID: 1645811579}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1635435843
 GameObject:
   m_ObjectHideFlags: 0
@@ -2879,7 +2866,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c401ea1e5b8b7f14d88fea979ded1297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  module: {fileID: 1635435847}
 --- !u!114 &1635435846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2905,8 +2891,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc98c3358e149da47bf9d809abd77495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactTag: 
-  interactDistance: 10
 --- !u!114 &1635435848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3065,8 +3049,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc98c3358e149da47bf9d809abd77495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactTag: 
-  interactDistance: 10
 --- !u!114 &1765804001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3092,7 +3074,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c401ea1e5b8b7f14d88fea979ded1297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  module: {fileID: 1765804000}
 --- !u!114 &1765804003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3291,7 +3272,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c401ea1e5b8b7f14d88fea979ded1297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  module: {fileID: 1854484602}
 --- !u!114 &1854484601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3317,8 +3297,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc98c3358e149da47bf9d809abd77495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactTag: 
-  interactDistance: 10
 --- !u!114 &1854484603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3971,7 +3949,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c401ea1e5b8b7f14d88fea979ded1297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  module: {fileID: 2144571361}
 --- !u!114 &2144571360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3997,8 +3974,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc98c3358e149da47bf9d809abd77495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactTag: 
-  interactDistance: 10
 --- !u!114 &2144571362
 MonoBehaviour:
   m_ObjectHideFlags: 0
