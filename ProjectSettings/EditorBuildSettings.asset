@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/sandbox.unity
     guid: d18ca5a2e70c397429b6de75151d1900
-  - enabled: 1
+  - enabled: 0
     path: Assets/trygrab2.unity
     guid: 9e718695116c14e428f40d209d0cc664
+  - enabled: 1
+    path: Assets/Scene/SyncedScaleTest.unity
+    guid: 988795902659d0343b41b3041c9d739e

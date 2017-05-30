@@ -35,27 +35,6 @@ public class ScaleSizeWithHeight : Synchronizable, IGlobalTriggerPressDownHandle
         }
     }
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        //if (Input.GetKeyDown(KeyCode.Space) && !_TriggerDown) {
-        //    _TriggerDown = true;
-        //    _StartY = transform.position.y;
-        //}
-        //else if (Input.GetKeyUp(KeyCode.Space) && _TriggerDown) {
-        //    _TriggerDown = false;
-        //}
-
-        //if (_TriggerDown) {
-        //    var percent = Mathf.Clamp(HeadTransform.position.y / _StartY, LowerLimit, 1f);
-        //    HeadTransform.localScale = Vector3.one * percent;
-        //}
-	}
-
     public override void ResetData() {
         data = new Holojam.Network.Flake(1, 0, 0, 0);
     }
@@ -63,6 +42,7 @@ public class ScaleSizeWithHeight : Synchronizable, IGlobalTriggerPressDownHandle
     protected override void Sync() {
         if (Host) {
             if (_TriggerDown) {
+                var diff = HeadTransform.position.y - _StartY;
                 var percent = Mathf.Clamp(HeadTransform.position.y / _StartY, LowerLimit, 1f);
                 HeadTransform.localScale = Vector3.one * percent;
                 Debug.Log("sending data and stuff!!!");
