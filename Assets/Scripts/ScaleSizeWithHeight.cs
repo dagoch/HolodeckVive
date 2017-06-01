@@ -45,7 +45,6 @@ public class ScaleSizeWithHeight : Synchronizable, IGlobalTriggerPressDownHandle
                 var diff = HeadTransform.position.y - _StartY;
                 var percent = Mathf.Clamp(HeadTransform.position.y / _StartY, LowerLimit, 1f);
                 HeadTransform.localScale = Vector3.one * percent;
-                Debug.Log("sending data and stuff!!!");
             }
             data.vector3s[0] = HeadTransform.localScale;
             //data.ints[0] = (_TriggerDown) ? 1 : 0;

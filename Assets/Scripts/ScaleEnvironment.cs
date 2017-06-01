@@ -8,14 +8,13 @@ using Holojam.Vive;
 public class ScaleEnvironment : Synchronizable, IGlobalTriggerPressDownHandler, IGlobalTriggerPressUpHandler {
 
     public Transform HeadTransform;
-    public Transform HolojamTransform;
     public Transform EnvironmentTransform;
-    public float ScaleFactor;
+    public float PercentPerUnit;
 
-    private float _StartY;
+    private Vector3 _DefaultScale;
     private bool _TriggerDown;
-    private Vector3 _StartScale;
     private float[] _SavedLightRanges;
+    private float _LastY;
 
     private ViveControllerReceiver _VCReceiver;
 
@@ -34,37 +33,53 @@ public class ScaleEnvironment : Synchronizable, IGlobalTriggerPressDownHandler, 
         }
     }
 
+    void Start() {
+        ResetScales();
+    }
+
     public override void ResetData() {
-        data = new Holojam.Network.Flake(1, 0, 0, 0);
+        data = new Holojam.Network.Flake(1, 0, _SavedLightRanges.Length, 0);
+    }
+
+    public void ResetScales() {
+        _DefaultScale = EnvironmentTransform.localScale;	
+        var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
+        _SavedLightRanges = new float[lights.Length];
+        for (var i = 0; i < lights.Length; i++) {
+            _SavedLightRanges[i] = lights[i].range;
+        }
     }
 
     protected override void Sync() {
         if (Host) {
             if (_TriggerDown) {
-                var diff = HeadTransform.position.y - _StartY;
-                Debug.Log("diff is: " + diff);
-                var scale = _StartScale * (1 + diff * ScaleFactor);
+                var diff = HeadTransform.position.y - _LastY;
+                var scale = EnvironmentTransform.localScale;
+                scale += (_DefaultScale * diff * PercentPerUnit);
                 EnvironmentTransform.localScale = scale;
-                Debug.Log("start: " + _StartScale + " local: " + scale);
-                //EnvironmentTransform.localScale = _StartScale;
+                var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
+                for (var i = 0; i < lights.Length; i++) {
+                    var range = _SavedLightRanges[i];
+                    lights[i].range += range * diff * PercentPerUnit;
+                    data.floats[i] = lights[i].range;
+                }
+                _LastY = HeadTransform.position.y;
             }
             data.vector3s[0] = EnvironmentTransform.localScale;
         }
         else {
             EnvironmentTransform.localScale = data.vector3s[0];
+            var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
+            for (var i = 0; i < lights.Length; i++) {
+                lights[i].range = data.floats[i];
+            }
         }
     }
 
     void IGlobalTriggerPressDownHandler.OnGlobalTriggerPressDown(VREventData eventData) {
         if (Host) {
             _TriggerDown = true;
-            _StartY = HeadTransform.position.y;
-            _StartScale = EnvironmentTransform.localScale;
-            var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
-            _SavedLightRanges = new float[lights.Length];
-            for (var i = 0; i < lights.Length; i++) {
-                _SavedLightRanges[i] = lights[i].range;
-            }
+            _LastY = HeadTransform.position.y;
         }
     }
 

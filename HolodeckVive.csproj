@@ -155,6 +155,7 @@
     <Compile Include="Assets\Scripts\ISceneController.cs" />
     <Compile Include="Assets\Scripts\MoveUpAndDown.cs" />
     <Compile Include="Assets\Scripts\ScaleEnvironment.cs" />
+    <Compile Include="Assets\Scripts\ScaleEnvironmentTester.cs" />
     <Compile Include="Assets\Scripts\ScaleSizeWithHeight.cs" />
     <Compile Include="Assets\Scripts\SceneChanger.cs" />
     <Compile Include="Assets\Scripts\TeaPartySceneController.cs" />
