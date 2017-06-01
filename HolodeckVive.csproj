@@ -162,6 +162,7 @@
     <Compile Include="Assets\Scripts\SceneChanger.cs" />
     <Compile Include="Assets\Scripts\TeaPartySceneController.cs" />
     <Compile Include="Assets\Scripts\TheRoomSceneController.cs" />
+    <Compile Include="Assets\Scripts\TriggerSubscriber.cs" />
     <Compile Include="Assets\Shrinking.cs" />
     <Compile Include="Assets\SizeToggler.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
