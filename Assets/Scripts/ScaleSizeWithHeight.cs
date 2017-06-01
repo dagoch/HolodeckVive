@@ -9,14 +9,12 @@ using System;
 public class ScaleSizeWithHeight : Synchronizable, IGlobalTriggerPressDownHandler, IGlobalTriggerPressUpHandler {
 
     public Transform HeadTransform;
-    public Transform LeftHandTransform;
-    public Transform RightHandTransform;
+    public Transform[] TransformsToScale;
+    public float PercentPerUnit;
 
-    [Range(0, 1)]
-    public float LowerLimit;
-
-    private float _StartY;
-    private bool _TriggerDown;
+    private Vector3[] _DefaultScales;
+    private bool _Scaling;
+    private float _LastY;
 
     private ViveControllerReceiver _VCReceiver;
 
@@ -35,38 +33,51 @@ public class ScaleSizeWithHeight : Synchronizable, IGlobalTriggerPressDownHandle
         }
     }
 
+    private void Start() {
+        RefreshTransforms();
+    }
+
+    public void RefreshTransforms() {
+        _DefaultScales = new Vector3[TransformsToScale.Length];
+        for (var i = 0; i < TransformsToScale.Length; i++) {
+            _DefaultScales[i] = TransformsToScale[i].localScale;
+        }
+    }
+
     public override void ResetData() {
-        data = new Holojam.Network.Flake(1, 0, 0, 0);
+        data = new Holojam.Network.Flake(TransformsToScale.Length, 0, 0, 0);
     }
 
     protected override void Sync() {
         if (Host) {
-            if (_TriggerDown) {
-                var diff = HeadTransform.position.y - _StartY;
-                var percent = Mathf.Clamp(HeadTransform.position.y / _StartY, LowerLimit, 1f);
-                HeadTransform.localScale = Vector3.one * percent;
-                Debug.Log("sending data and stuff!!!");
+            if (_Scaling) {
+                var diff = HeadTransform.position.y - _LastY;
+                for (var i = 0; i < TransformsToScale.Length; i++) {
+                    var scale = TransformsToScale[i].localScale;
+                    scale += (_DefaultScales[i] * diff * PercentPerUnit);
+                    TransformsToScale[i].localScale = scale;
+                    data.vector3s[i] = scale;
+                }
+                _LastY = HeadTransform.position.y;
             }
-            data.vector3s[0] = HeadTransform.localScale;
-            //data.ints[0] = (_TriggerDown) ? 1 : 0;
         }
         else {
-            HeadTransform.localScale = data.vector3s[0];
-            //_TriggerDown = (data.ints[0] == 1) ? true : false;
+            for (var i = 0; i < TransformsToScale.Length; i++) {
+                TransformsToScale[i].localScale = data.vector3s[i];
+            }
         }
     }
 
     void IGlobalTriggerPressDownHandler.OnGlobalTriggerPressDown(VREventData eventData) {
-        Debug.Log("trigger is down");
         if (Host) {
-            _TriggerDown = true;
-            _StartY = HeadTransform.position.y;
+            _Scaling = true;
+            _LastY = HeadTransform.position.y;
         }
     }
 
     void IGlobalTriggerPressUpHandler.OnGlobalTriggerPressUp(VREventData eventData) {
         if (Host) {
-            _TriggerDown = false;
+            _Scaling = false;
         }
     }
 }
