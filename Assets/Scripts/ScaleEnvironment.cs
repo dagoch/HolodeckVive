@@ -12,7 +12,7 @@ public class ScaleEnvironment : Synchronizable, IGlobalTriggerPressDownHandler, 
     public float PercentPerUnit;
 
     private Vector3 _DefaultScale;
-    private bool _TriggerDown;
+    private bool _Scaling;
     private float[] _SavedLightRanges;
     private float _LastY;
 
@@ -52,7 +52,7 @@ public class ScaleEnvironment : Synchronizable, IGlobalTriggerPressDownHandler, 
 
     protected override void Sync() {
         if (Host) {
-            if (_TriggerDown) {
+            if (_Scaling) {
                 var diff = HeadTransform.position.y - _LastY;
                 var scale = EnvironmentTransform.localScale;
                 scale += (_DefaultScale * diff * PercentPerUnit);
@@ -78,14 +78,14 @@ public class ScaleEnvironment : Synchronizable, IGlobalTriggerPressDownHandler, 
 
     void IGlobalTriggerPressDownHandler.OnGlobalTriggerPressDown(VREventData eventData) {
         if (Host) {
-            _TriggerDown = true;
+            _Scaling = true;
             _LastY = HeadTransform.position.y;
         }
     }
 
     void IGlobalTriggerPressUpHandler.OnGlobalTriggerPressUp(VREventData eventData) {
         if (Host) {
-            _TriggerDown = false;
+            _Scaling = false;
         }
     }
 }
