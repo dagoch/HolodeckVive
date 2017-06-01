@@ -149,6 +149,7 @@
     <Compile Include="Assets\InputSystems-master\Utility\VREventData.cs" />
     <Compile Include="Assets\InputSystems-master\Vive\IViveHandler.cs" />
     <Compile Include="Assets\InputSystems-master\Vive\ViveControllerModule.cs" />
+    <Compile Include="Assets\Scripts\DoorController.cs" />
     <Compile Include="Assets\Scripts\Extensions\GameObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\Extensions\ListExtension.cs" />
     <Compile Include="Assets\Scripts\Extensions\TransformExtensions.cs" />
