@@ -13,7 +13,7 @@ public class ScaleEnvironment : Synchronizable, IGlobalTriggerPressDownHandler, 
 
     private Vector3 _DefaultScale;
     private bool _Scaling;
-    private float[] _SavedLightRanges;
+    private float[] _SavedLightRanges = new float[0];
     private float _LastY;
 
     private ViveControllerReceiver _VCReceiver;
