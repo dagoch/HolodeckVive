@@ -12,8 +12,15 @@ public class TimedAppearance : MonoBehaviour {
   // Use this for initialization
 	void Start ()
   {
-    GetComponent<MeshRenderer>().enabled = false;
-	}
+    foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
+    { 
+      mr.enabled = false;
+    }
+    if (GetComponent<MeshRenderer>())
+    {
+      GetComponent<MeshRenderer>().enabled = false;
+    }
+  }
 	
 	// Update is called once per frame
 	void Update () {
@@ -24,7 +31,14 @@ public class TimedAppearance : MonoBehaviour {
       bool onScreen = screenPoint.z > 0-viewportBuffer && screenPoint.x > 0-viewportBuffer && screenPoint.x < 1+viewportBuffer && screenPoint.y > 0-viewportBuffer && screenPoint.y < 1+viewportBuffer;
       if (!onScreen)
       {
-        GetComponent<MeshRenderer>().enabled = true;
+        if (GetComponent<MeshRenderer>())
+        {
+          GetComponent<MeshRenderer>().enabled = true;
+        }
+        foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
+        {
+          mr.enabled = true;
+        }
         this.enabled = false;
       }
     }
