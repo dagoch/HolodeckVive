@@ -12,8 +12,11 @@ public class ScaleEnvironment : Synchronizable, IGlobalTriggerPressDownHandler, 
     public float PercentPerUnit;
 
     private Vector3 _DefaultScale;
+    private float[] _DefaultLightRanges;
     private bool _Scaling;
-    private float[] _SavedLightRanges = new float[0];
+    private Vector3 _StartScale;
+    private float[] _StartLightRanges = new float[0];
+    private float _StartY;
     private float _LastY;
 
     private ViveControllerReceiver _VCReceiver;
@@ -38,34 +41,34 @@ public class ScaleEnvironment : Synchronizable, IGlobalTriggerPressDownHandler, 
     }
 
     public override void ResetData() {
-        data = new Holojam.Network.Flake(1, 0, _SavedLightRanges.Length, 0);
+        data = new Holojam.Network.Flake(1, 0, _StartLightRanges.Length, 0);
     }
 
     public void ResetScales() {
         _DefaultScale = EnvironmentTransform.localScale;	
         var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
-        _SavedLightRanges = new float[lights.Length];
+        _StartLightRanges = new float[lights.Length];
         for (var i = 0; i < lights.Length; i++) {
-            _SavedLightRanges[i] = lights[i].range;
+            _StartLightRanges[i] = lights[i].range;
         }
     }
 
     protected override void Sync() {
         if (Host) {
+            var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
             if (_Scaling) {
-                var diff = HeadTransform.position.y - _LastY;
-                var scale = EnvironmentTransform.localScale;
-                scale += (_DefaultScale * diff * PercentPerUnit);
+                var diff = HeadTransform.position.y - _StartY;
+                var scale = _StartScale + (_DefaultScale * diff * PercentPerUnit);
                 EnvironmentTransform.localScale = scale;
-                var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
                 for (var i = 0; i < lights.Length; i++) {
-                    var range = _SavedLightRanges[i];
-                    lights[i].range += range * diff * PercentPerUnit;
-                    data.floats[i] = lights[i].range;
+                    var range = _DefaultLightRanges[i];
+                    lights[i].range = _StartLightRanges[i] + range * diff * PercentPerUnit;
                 }
-                _LastY = HeadTransform.position.y;
             }
             data.vector3s[0] = EnvironmentTransform.localScale;
+            for (var i = 0; i < lights.Length; i++) {
+                data.floats[i] = lights[i].range;
+            }
         }
         else {
             EnvironmentTransform.localScale = data.vector3s[0];
@@ -80,6 +83,13 @@ public class ScaleEnvironment : Synchronizable, IGlobalTriggerPressDownHandler, 
         if (Host) {
             _Scaling = true;
             _LastY = HeadTransform.position.y;
+            _StartY = HeadTransform.position.y;
+            _StartScale = EnvironmentTransform.localScale;
+            var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
+            _StartLightRanges = new float[lights.Length];
+            for (var i = 0; i < lights.Length; i++) {
+                _StartLightRanges[i] = lights[i].range;
+            }
         }
     }
 

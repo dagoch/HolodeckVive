@@ -9,17 +9,20 @@ public class ScaleEnvironmentTester : MonoBehaviour {
     public float PercentPerUnit;
 
     private Vector3 _DefaultScale;
+    private float[] _DefaultLightRanges;
     private bool _TriggerDown;
-    private float[] _SavedLightRanges;
+    private Vector3 _StartScale;
+    private float[] _StartLightRanges;
+    private float _StartY;
     private float _LastY;
 
 	// Use this for initialization
 	void Start () {
         _DefaultScale = EnvironmentTransform.localScale;	
         var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
-        _SavedLightRanges = new float[lights.Length];
+        _DefaultLightRanges = new float[lights.Length];
         for (var i = 0; i < lights.Length; i++) {
-            _SavedLightRanges[i] = lights[i].range;
+            _DefaultLightRanges[i] = lights[i].range;
         }
 	}
 	
@@ -28,20 +31,28 @@ public class ScaleEnvironmentTester : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.B) && !_TriggerDown) {
             _TriggerDown = true;
             _LastY = HeadTransform.position.y;
+            _StartY = HeadTransform.position.y;
+            _StartScale = EnvironmentTransform.localScale;
+            var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
+            _StartLightRanges = new float[lights.Length];
+            for (var i = 0; i < lights.Length; i++) {
+                _StartLightRanges[i] = lights[i].range;
+            }
         }
         else if (Input.GetKeyUp(KeyCode.B) && _TriggerDown) {
             _TriggerDown = false;
         }
 
         if (_TriggerDown) {
-            var diff = HeadTransform.position.y - _LastY;
-            var scale = EnvironmentTransform.localScale;
-            scale += (_DefaultScale * diff * PercentPerUnit);
+            //var diff = HeadTransform.position.y - _LastY;
+            var diff = HeadTransform.position.y - _StartY;
+            //var scale = EnvironmentTransform.localScale;
+            var scale = _StartScale + (_DefaultScale * diff * PercentPerUnit);
             EnvironmentTransform.localScale = scale;
             var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
             for (var i = 0; i < lights.Length; i++) {
-                var range = _SavedLightRanges[i];
-                lights[i].range += range * diff * PercentPerUnit;
+                var range = _DefaultLightRanges[i];
+                lights[i].range = _StartLightRanges[i] + range * diff * PercentPerUnit;
             }
             _LastY = HeadTransform.position.y;
         }		

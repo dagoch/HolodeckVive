@@ -93,8 +93,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Grabbing.cs" />
-    <Compile Include="Assets\HandToggler.cs" />
     <Compile Include="Assets\Holojam\Demo\Scripts\Examples\ActorAvatar.cs" />
     <Compile Include="Assets\Holojam\Demo\Scripts\Examples\Spectator.cs" />
     <Compile Include="Assets\Holojam\Demo\Scripts\Examples\SynchronizableComponent.cs" />
@@ -153,6 +151,8 @@
     <Compile Include="Assets\Scripts\Extensions\GameObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\Extensions\ListExtension.cs" />
     <Compile Include="Assets\Scripts\Extensions\TransformExtensions.cs" />
+    <Compile Include="Assets\Scripts\Grabbing.cs" />
+    <Compile Include="Assets\Scripts\HandToggler.cs" />
     <Compile Include="Assets\Scripts\ISceneController.cs" />
     <Compile Include="Assets\Scripts\MoveUpAndDown.cs" />
     <Compile Include="Assets\Scripts\ScaleEnvironment.cs" />
@@ -160,11 +160,13 @@
     <Compile Include="Assets\Scripts\ScaleSizeWithHeight.cs" />
     <Compile Include="Assets\Scripts\ScaleSizeWithHeightTester.cs" />
     <Compile Include="Assets\Scripts\SceneChanger.cs" />
+    <Compile Include="Assets\Scripts\Shrinking.cs" />
+    <Compile Include="Assets\Scripts\SizeToggler.cs" />
     <Compile Include="Assets\Scripts\TeaPartySceneController.cs" />
     <Compile Include="Assets\Scripts\TheRoomSceneController.cs" />
+    <Compile Include="Assets\Scripts\TimedAppearance.cs" />
     <Compile Include="Assets\Scripts\TriggerSubscriber.cs" />
-    <Compile Include="Assets\Shrinking.cs" />
-    <Compile Include="Assets\SizeToggler.cs" />
+    <Compile Include="Assets\Scripts\VisibleToggler.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />
@@ -266,7 +268,6 @@
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_TrackedObject.cs" />
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_UpdatePoses.cs" />
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_Utils.cs" />
-    <Compile Include="Assets\VisibleToggler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Holojam\SampleConfig.xml" />

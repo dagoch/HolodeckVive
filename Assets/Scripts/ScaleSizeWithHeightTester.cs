@@ -10,7 +10,9 @@ public class ScaleSizeWithHeightTester : MonoBehaviour {
 
     private Vector3[] _DefaultScales;
     private bool _TriggerDown;
+    private Vector3[] _StartScales;
     private float _LastY;
+    private float _StartY;
 
 	// Use this for initialization
 	void Start () {
@@ -29,16 +31,22 @@ public class ScaleSizeWithHeightTester : MonoBehaviour {
 	    if (Input.GetKeyDown(KeyCode.Space) && !_TriggerDown) {
             _TriggerDown = true;
             _LastY = HeadTransform.position.y;
+            _StartY = HeadTransform.position.y;
+            _StartScales = new Vector3[TransformsToScale.Length];
+            for (var i = 0; i < TransformsToScale.Length; i++) {
+                _StartScales[i] = TransformsToScale[i].localScale;
+            }
         }	
         else if (Input.GetKeyUp(KeyCode.Space) && _TriggerDown) {
             _TriggerDown = false;
         }
 
         if (_TriggerDown) {
-            var diff = HeadTransform.position.y - _LastY;
+            //var diff = HeadTransform.position.y - _LastY;
+            var diff = HeadTransform.position.y - _StartY;
             for (var i = 0; i < TransformsToScale.Length; i++) {
-                var scale = TransformsToScale[i].localScale;
-                scale += (_DefaultScales[i] * diff * PercentPerUnit);
+                //var scale = TransformsToScale[i].localScale;
+                var scale = _StartScales[i] + (_DefaultScales[i] * diff * PercentPerUnit);
                 TransformsToScale[i].localScale = scale;
             }
             _LastY = HeadTransform.position.y;
