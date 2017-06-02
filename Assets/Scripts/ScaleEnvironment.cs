@@ -41,7 +41,7 @@ public class ScaleEnvironment : Synchronizable, IGlobalTriggerPressDownHandler, 
     }
 
     public override void ResetData() {
-        data = new Holojam.Network.Flake(1, 0, _StartLightRanges.Length, 0);
+        data = new Holojam.Network.Flake(1, 0, _StartLightRanges.Length, 1);
     }
 
     public void ResetScales() {
@@ -57,6 +57,8 @@ public class ScaleEnvironment : Synchronizable, IGlobalTriggerPressDownHandler, 
         if (Host) {
             var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
             if (_Scaling) {
+                // set the first int value to 1 to indicate you are updating scales
+                data.ints[0] = 1;
                 var diff = HeadTransform.position.y - _StartY;
                 var scale = _StartScale + (_DefaultScale * diff * PercentPerUnit);
                 EnvironmentTransform.localScale = scale;
@@ -64,17 +66,24 @@ public class ScaleEnvironment : Synchronizable, IGlobalTriggerPressDownHandler, 
                     var range = _DefaultLightRanges[i];
                     lights[i].range = _StartLightRanges[i] + range * diff * PercentPerUnit;
                 }
+                data.vector3s[0] = EnvironmentTransform.localScale;
+                for (var i = 0; i < lights.Length; i++) {
+                    data.floats[i] = lights[i].range;
+                }
             }
-            data.vector3s[0] = EnvironmentTransform.localScale;
-            for (var i = 0; i < lights.Length; i++) {
-                data.floats[i] = lights[i].range;
+            else {
+                data.ints[0] = 0;
             }
         }
         else {
-            EnvironmentTransform.localScale = data.vector3s[0];
-            var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
-            for (var i = 0; i < lights.Length; i++) {
-                lights[i].range = data.floats[i];
+            // only change scales if the host script is changing them. This is to prevent
+            // multiple different scaling scripts overriding each other
+            if (data.ints[0] == 1) {
+                EnvironmentTransform.localScale = data.vector3s[0];
+                var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
+                for (var i = 0; i < lights.Length; i++) {
+                    lights[i].range = data.floats[i];
+                }
             }
         }
     }
