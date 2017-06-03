@@ -77,6 +77,7 @@ public class Grabbing : Synchronizable, IGlobalTriggerPressDownHandler {
 		//and the object attatched to the other collider is tagged as grabbable
 		if (other.tag == "Grabbable") 
 		{
+      Debug.Log("touching grabbable");
       touchingGrabbable = 1;
       touchedObject = other.gameObject;
 		}
@@ -95,7 +96,6 @@ public class Grabbing : Synchronizable, IGlobalTriggerPressDownHandler {
 	void IGlobalTriggerPressDownHandler.OnGlobalTriggerPressDown(VREventData eventData){
 		if (Host)
     {
-			Debug.Log ("Trigger pressed to grab");
 			if (isGrabbing == 1)
       {
         isGrabbing = 0;

@@ -7,7 +7,7 @@ using Holojam.Vive;
 using System;
 
 
-public class VisibleToggler : Synchronizable, IGlobalGripPressDownHandler {
+public class VisibleToggler : Synchronizable, IGlobalApplicationMenuPressDownHandler {
 
   //GameObject target needs to have a mesh renderer component attached for this to work
   public List<GameObject> targets = new List<GameObject>();
@@ -71,11 +71,8 @@ public class VisibleToggler : Synchronizable, IGlobalGripPressDownHandler {
       }
     }
   }
-  
 
-  #region IGlobalGripPressDownHandler implementation
-
-  void IGlobalGripPressDownHandler.OnGlobalGripPressDown(VREventData eventData)
+  void IGlobalApplicationMenuPressDownHandler.OnGlobalApplicationMenuPressDown(VREventData eventData)
   {
     if (Host)
     {
@@ -92,8 +89,6 @@ public class VisibleToggler : Synchronizable, IGlobalGripPressDownHandler {
       }
     }
   }
-
-
-  #endregion
+  
 
 }
