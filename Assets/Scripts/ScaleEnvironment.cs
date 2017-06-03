@@ -5,14 +5,14 @@ using FRL.IO;
 using Holojam.Tools;
 using Holojam.Vive;
 
-public class ScaleEnvironment : Synchronizable, IGlobalTriggerPressDownHandler, IGlobalTriggerPressUpHandler {
+public class ScaleEnvironment : Synchronizable, IGlobalTouchpadPressDownHandler, IGlobalTouchpadPressUpHandler {
 
     public Transform HeadTransform;
     public Transform EnvironmentTransform;
     public float PercentPerUnit;
 
     private Vector3 _DefaultScale;
-    private float[] _DefaultLightRanges;
+    private float[] _DefaultLightRanges = new float[0];
     private bool _Scaling;
     private Vector3 _StartScale;
     private float[] _StartLightRanges = new float[0];
@@ -41,15 +41,15 @@ public class ScaleEnvironment : Synchronizable, IGlobalTriggerPressDownHandler, 
     }
 
     public override void ResetData() {
-        data = new Holojam.Network.Flake(1, 0, _StartLightRanges.Length, 1);
+        data = new Holojam.Network.Flake(1, 0, _DefaultLightRanges.Length, 1);
     }
 
     public void ResetScales() {
         _DefaultScale = EnvironmentTransform.localScale;	
         var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
-        _StartLightRanges = new float[lights.Length];
+        _DefaultLightRanges = new float[lights.Length];
         for (var i = 0; i < lights.Length; i++) {
-            _StartLightRanges[i] = lights[i].range;
+            _DefaultLightRanges[i] = lights[i].range;
         }
     }
 
@@ -88,7 +88,7 @@ public class ScaleEnvironment : Synchronizable, IGlobalTriggerPressDownHandler, 
         }
     }
 
-    void IGlobalTriggerPressDownHandler.OnGlobalTriggerPressDown(VREventData eventData) {
+    void IGlobalTouchpadPressDownHandler.OnGlobalTouchpadPressDown(VREventData eventData) {
         if (Host) {
             _Scaling = true;
             _LastY = HeadTransform.position.y;
@@ -99,10 +99,11 @@ public class ScaleEnvironment : Synchronizable, IGlobalTriggerPressDownHandler, 
             for (var i = 0; i < lights.Length; i++) {
                 _StartLightRanges[i] = lights[i].range;
             }
+            ResetData();
         }
     }
 
-    void IGlobalTriggerPressUpHandler.OnGlobalTriggerPressUp(VREventData eventData) {
+    void IGlobalTouchpadPressUpHandler.OnGlobalTouchpadPressUp(VREventData eventData) {
         if (Host) {
             _Scaling = false;
         }
