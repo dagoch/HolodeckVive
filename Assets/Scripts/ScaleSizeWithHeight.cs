@@ -6,7 +6,7 @@ using Holojam.Tools;
 using Holojam.Vive;
 using System;
 
-public class ScaleSizeWithHeight : Synchronizable, IGlobalTriggerPressDownHandler, IGlobalTriggerPressUpHandler {
+public class ScaleSizeWithHeight : Synchronizable, IGlobalTouchpadPressDownHandler, IGlobalTouchpadPressUpHandler {
 
     public Transform HeadTransform;
     public Transform[] TransformsToScale;
@@ -73,7 +73,7 @@ public class ScaleSizeWithHeight : Synchronizable, IGlobalTriggerPressDownHandle
         }
     }
 
-    void IGlobalTriggerPressDownHandler.OnGlobalTriggerPressDown(VREventData eventData) {
+    void IGlobalTouchpadPressDownHandler.OnGlobalTouchpadPressDown(VREventData eventData) {
         if (Host) {
             _Scaling = true;
             //_LastY = HeadTransform.position.y;
@@ -85,7 +85,7 @@ public class ScaleSizeWithHeight : Synchronizable, IGlobalTriggerPressDownHandle
         }
     }
 
-    void IGlobalTriggerPressUpHandler.OnGlobalTriggerPressUp(VREventData eventData) {
+    void IGlobalTouchpadPressUpHandler.OnGlobalTouchpadPressUp(VREventData eventData) {
         if (Host) {
             _Scaling = false;
         }
