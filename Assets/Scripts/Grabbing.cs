@@ -64,7 +64,7 @@ public class Grabbing : Synchronizable, IGlobalTriggerPressDownHandler {
       heldObject.parent = GetComponent<Transform>();
       isHolding = 1;
     }
-    if (isHolding == 0)
+    else if (isHolding == 0 && heldObject != null)
     {
       heldObject.parent = null;
     }
