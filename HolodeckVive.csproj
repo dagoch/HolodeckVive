@@ -190,9 +190,13 @@
     <Compile Include="Assets\Scripts\Extensions\GameObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\Extensions\ListExtension.cs" />
     <Compile Include="Assets\Scripts\Extensions\TransformExtensions.cs" />
+    <Compile Include="Assets\Scripts\FlowerController.cs" />
     <Compile Include="Assets\Scripts\Grabbing.cs" />
+    <Compile Include="Assets\Scripts\GripChildActivator.cs" />
     <Compile Include="Assets\Scripts\HandToggler.cs" />
+    <Compile Include="Assets\Scripts\IActivateReceiver.cs" />
     <Compile Include="Assets\Scripts\ISceneController.cs" />
+    <Compile Include="Assets\Scripts\LockWorldPosition.cs" />
     <Compile Include="Assets\Scripts\MoveUpAndDown.cs" />
     <Compile Include="Assets\Scripts\RotationBasedAppearance.cs" />
     <Compile Include="Assets\Scripts\RotationBasedDisappearance.cs" />
