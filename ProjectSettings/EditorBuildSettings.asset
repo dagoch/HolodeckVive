@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scene/testgrabscene.unity
     guid: 0cc60f17c9db53f4e83050228710357c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scene/transformlab.unity
     guid: d812863e8b7e9204d8a245d62ef384d0
+  - enabled: 1
+    path: Assets/Scene/alice-demo-v1.unity
+    guid: 5157a819668ae9140a7d4bd64daf85a2

@@ -46,13 +46,14 @@ public class SynchronizableComponent : Holojam.Tools.SynchronizableTrackable {
   // Override Sync() to include the scale vector
   protected override void Sync() {
     base.Sync();
-/*
+
     if (Sending) {
       Scale = transform.localScale;
     } else {
       transform.localScale = Scale;
-    }*/
+    }
   }
+
   protected override void Update() {
     if (autoHost) host = Sending; // Lock host flag
     base.Update();

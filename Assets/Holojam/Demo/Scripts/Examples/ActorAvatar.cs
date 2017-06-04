@@ -25,6 +25,7 @@ public class ActorAvatar : Holojam.Tools.Actor {
   }
 
   protected override void UpdateTracking() {
+    Debug.Log("tracking");
     if (Tracked) {
       transform.position = TrackedPosition;
 
@@ -38,7 +39,11 @@ public class ActorAvatar : Holojam.Tools.Actor {
     // Toggle mask--if this is a build actor, we don't want to render our mesh in
     // front of the camera
     if (mask != null)
+    {
       mask.SetActive(!IsBuild);
+      Debug.Log(mask.name + ": " + mask.activeSelf + " vs " + mask.activeInHierarchy);
+    }
+    //Debug.Log(gameObject.name + "::" + IsBuild + "-" + (mask == null));
   }
 
   // Toggle the head object on fade in and fade out to hide the attached mesh
@@ -48,7 +53,7 @@ public class ActorAvatar : Holojam.Tools.Actor {
   }
 
   protected override void FadeOut() {
-    //head.gameObject.SetActive(false);
+    head.gameObject.SetActive(false);
   }
 
   void Start() { ApplyMotif(); }
