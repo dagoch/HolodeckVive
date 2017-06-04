@@ -25,7 +25,6 @@ public class ActorAvatar : Holojam.Tools.Actor {
   }
 
   protected override void UpdateTracking() {
-    Debug.Log("tracking");
     if (Tracked) {
       transform.position = TrackedPosition;
 
@@ -41,7 +40,6 @@ public class ActorAvatar : Holojam.Tools.Actor {
     if (mask != null)
     {
       mask.SetActive(!IsBuild);
-      Debug.Log(mask.name + ": " + mask.activeSelf + " vs " + mask.activeInHierarchy);
     }
     //Debug.Log(gameObject.name + "::" + IsBuild + "-" + (mask == null));
   }

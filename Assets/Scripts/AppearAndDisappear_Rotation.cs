@@ -17,21 +17,29 @@ public class AppearAndDisappear_Rotation : MonoBehaviour {
   public Camera cr;
 
   bool seen = true;
-  MeshRenderer mr;
+  MeshRenderer[] meshRenderers;
 
   void Start()
   {
-    mr = GetComponent<MeshRenderer>();
-    if (!appearOnStart)
+    List<MeshRenderer> mrs = new List<MeshRenderer>();
+    MeshRenderer mr = GetComponent<MeshRenderer>();
+    if (mr)
     {
-      mr.enabled = false;
+      mrs.Add(mr);
+      mr.enabled = appearOnStart;
     }
+    foreach (MeshRenderer mesh in GetComponentsInChildren<MeshRenderer>())
+    {
+      mrs.Add(mesh);
+      mesh.enabled = appearOnStart;
+    }
+    meshRenderers = mrs.ToArray();
     //debug
     //StartCoroutine(StartTimer(false));
   }
 
   // Call this to reset object to initial state
-  void reset()
+  public void reset()
   {
     switchState(appearOnStart);
   }
@@ -40,12 +48,8 @@ public class AppearAndDisappear_Rotation : MonoBehaviour {
   //state = true will turn all associated meshrenderers on, and vice versa
   void switchState(bool state)
   {
-    Debug.Log("switching");
-    if (mr)
-    {
-      mr.enabled = state;
-    }
-    foreach (MeshRenderer mesh in GetComponentsInChildren<MeshRenderer>())
+    Debug.Log("aad_rotate switching to "+state);
+    foreach (MeshRenderer mesh in meshRenderers)
     {
       mesh.enabled = state;
     }

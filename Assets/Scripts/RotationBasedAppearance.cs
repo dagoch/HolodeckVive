@@ -27,7 +27,7 @@ public class RotationBasedAppearance : MonoBehaviour
     if (appearTime < timer)
     {
       float currentRotation = cr.transform.rotation.eulerAngles.x;
-      Debug.Log(currentRotation);
+      //Debug.Log(currentRotation);
       if (currentRotation > rotation && currentRotation > 180)
       {
        t.enabled = true;
