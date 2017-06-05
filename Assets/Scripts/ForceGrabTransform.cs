@@ -15,6 +15,9 @@ public class ForceGrabTransform : Synchronizable, IGlobalTriggerPressDownHandler
     private bool _HoldingTransform = false;
     private ViveControllerReceiver _VCReceiver;
 
+    private float _DropPostDuration;
+    private float _DropPostTime;
+
     public override bool Host {
         get {
             if (!_VCReceiver) _VCReceiver = GetComponent<ViveControllerReceiver>();
@@ -45,20 +48,22 @@ public class ForceGrabTransform : Synchronizable, IGlobalTriggerPressDownHandler
                 if (!_HoldingTransform) {
                     _SavedParent = TargetTransform.parent;
                     TargetTransform.parent = transform;
-                    data.vector3s[0] = TargetTransform.localPosition;
-                    data.vector3s[1] = TargetTransform.localRotation.eulerAngles;
                     _HoldingTransform = true;
                 }
-                else {
-                    TargetTransform.parent = _SavedParent;
-                    _HoldingTransform = false;
-                }
                 data.ints[0] = 1;
+                data.vector3s[0] = TargetTransform.localPosition;
+                data.vector3s[1] = TargetTransform.localRotation.eulerAngles;
             }
-            else {
-                data.ints[0] = 0;
+            else if (_HoldingTransform) {
+                _DropPostTime = _DropPostDuration;
+                TargetTransform.parent = _SavedParent;
+                _HoldingTransform = false;
             }
-            _TriggerDown = false;
+
+            if (_DropPostTime > 0f) {
+                _DropPostTime -= Time.deltaTime;
+                data.ints[0] = 2;
+            }
         }
         else {
             if (data.ints[0] == 1) {
@@ -69,10 +74,10 @@ public class ForceGrabTransform : Synchronizable, IGlobalTriggerPressDownHandler
                     TargetTransform.localRotation = Quaternion.Euler(data.vector3s[1]);
                     _HoldingTransform = true;
                 }
-                else {
-                    TargetTransform.parent = _SavedParent;
-                    _HoldingTransform = false;
-                }
+            }
+            else if (data.ints[0] == 2) {
+                TargetTransform.parent = _SavedParent;
+                _HoldingTransform = false;
             }
         }
     }
