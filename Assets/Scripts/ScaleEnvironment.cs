@@ -39,14 +39,14 @@ public class ScaleEnvironment : Synchronizable, IGlobalTouchpadPressDownHandler,
     }
 
     void Start() {
-        ResetScales();
+        CalibrateScale();
     }
 
     public override void ResetData() {
         data = new Holojam.Network.Flake(2, 0, _DefaultLightRanges.Length, 1);
     }
 
-    public void ResetScales() {
+    public void CalibrateScale() {
         _DefaultScale = EnvironmentTransform.localScale;
         _DefaultPosition = EnvironmentTransform.position;
         var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
