@@ -11,8 +11,10 @@ public class ScaleEnvironment : Synchronizable, IGlobalTouchpadPressDownHandler,
     public Transform EnvironmentTransform;
     public Transform RelativeTransform;
     public float PercentPerUnit;
+    public float UpperLimit;
 
     private Vector3 _DefaultScale;
+    private float _DefaultMagnitude;
     private Vector3 _DefaultPosition;
     private float[] _DefaultLightRanges = new float[0];
     private bool _Scaling;
@@ -48,6 +50,7 @@ public class ScaleEnvironment : Synchronizable, IGlobalTouchpadPressDownHandler,
 
     public void CalibrateScale() {
         _DefaultScale = EnvironmentTransform.localScale;
+        _DefaultMagnitude = _DefaultScale.magnitude;
         _DefaultPosition = EnvironmentTransform.position;
         var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
         _DefaultLightRanges = new float[lights.Length];
@@ -64,10 +67,20 @@ public class ScaleEnvironment : Synchronizable, IGlobalTouchpadPressDownHandler,
                 data.ints[0] = 1;
                 var diff = HeadTransform.position.y - _StartY;
                 var scale = _StartScale + (_DefaultScale * diff * PercentPerUnit);
+                var magnitude = scale.magnitude;
+                scale.Normalize();
+                scale *= Mathf.Clamp(magnitude, _DefaultMagnitude, _DefaultMagnitude * UpperLimit);
+                //scale = Vector3.ClampMagnitude(scale, _DefaultMagnitude * UpperLimit);
                 EnvironmentTransform.localScale = scale;
                 data.vector3s[0] = EnvironmentTransform.localScale;
 
                 var percentDiff = scale.x / _DefaultScale.x;
+                //percentDiff = Mathf.Clamp(percentDiff, 1f, UpperLimit);
+
+                //scale = Vector3.Lerp(Vector3.zero, _DefaultScale, percentDiff);
+                EnvironmentTransform.localScale = scale;
+                data.vector3s[0] = EnvironmentTransform.localScale;
+
                 var relativePosition = RelativeTransform.position;
                 relativePosition.y = 0;
                 var position = Vector3.LerpUnclamped(relativePosition, _DefaultPosition, percentDiff);

@@ -1583,7 +1583,8 @@ MonoBehaviour:
   HeadTransform: {fileID: 0}
   EnvironmentTransform: {fileID: 0}
   RelativeTransform: {fileID: 0}
-  PercentPerUnit: 0.75
+  PercentPerUnit: 1
+  UpperLimit: 1.75
 --- !u!114 &114096411553283302
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1598,7 +1599,8 @@ MonoBehaviour:
   HeadTransform: {fileID: 0}
   EnvironmentTransform: {fileID: 0}
   RelativeTransform: {fileID: 0}
-  PercentPerUnit: 0.75
+  PercentPerUnit: 1
+  UpperLimit: 1.75
 --- !u!114 &114147011670091256
 MonoBehaviour:
   m_ObjectHideFlags: 1
