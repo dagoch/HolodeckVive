@@ -5,9 +5,13 @@ using Holojam.Network;
 
 public class SceneVisibilityController : MonoBehaviour {
 
+  public Transform environmentTransform;
   List<GameObject> sceneObjects = new List<GameObject>();
   AppearAndDisappear_View[] visibilityScriptsV;
   AppearAndDisappear_Rotation[] visibilityScriptsR;
+
+  Vector3 _startPosition = new Vector3();
+  Vector3 _startScale = new Vector3();
 
   // Use this for initialization
   void Start () {
@@ -24,6 +28,9 @@ public class SceneVisibilityController : MonoBehaviour {
 
     }
     Debug.Log("Found " + sceneObjects.Count + "appearanddisappear scripts");
+    environmentTransform = transform;
+    _startPosition = environmentTransform.position;
+    _startScale = environmentTransform.localScale;
   }
 	
 	// Update is called once per frame
@@ -37,12 +44,14 @@ public class SceneVisibilityController : MonoBehaviour {
   {
     Notifier.AddSubscriber(Trigger, "trigger");
     Notifier.AddSubscriber(Reset, "reset");
+    Notifier.AddSubscriber(Debug, "debug");
   }
 
   void OnDisable()
   {
     Notifier.RemoveSubscriber(Trigger, "trigger");
     Notifier.RemoveSubscriber(Reset, "reset");
+    Notifier.RemoveSubscriber(Debug, "debug");
   }
 
   void Trigger(string source, string scope, Flake data)
@@ -71,6 +80,13 @@ public class SceneVisibilityController : MonoBehaviour {
     {
       scr.reset();
     }
+    ResetScaling();
   }
 
+  void ResetScaling()
+  {
+    environmentTransform.position = _startPosition;
+
+    environmentTransform.localScale = _startScale;
+  }
 }
