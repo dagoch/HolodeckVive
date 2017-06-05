@@ -4,37 +4,34 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour {
 
-    public TriggerSubscriber OpenSubscriber;
-    public TriggerSubscriber CloseSubscriber;
+    public TriggerSubscriber DoorSubscriber;
     public float InteractionLockOut;
 
     private Animator _Animator;
     private float _RemainingLockout;
 
+    private bool _Closed = true;
+
 	void Start () {
         _Animator = GetComponent<Animator>();
-
-        OpenSubscriber.SubscribeToEnter(OnOpenEnter);
-        CloseSubscriber.SubscribeToEnter(OnCloseEnter);
+        DoorSubscriber.SubscribeToEnter(OnDoorColliderEnter);
 	}
 	
 	void Update () {
         _RemainingLockout -= Time.deltaTime;	
 	}
 
-    void OnOpenEnter(Collider other) {
+    void OnDoorColliderEnter(Collider other) {
         if (_RemainingLockout > 0f) {
             return;
         }
-        _RemainingLockout = InteractionLockOut;
-        _Animator.SetTrigger("Open");
-    }
-
-    void OnCloseEnter(Collider other) {
-        if (_RemainingLockout > 0f) {
-            return;
+        if (!_Closed) {
+            _Animator.SetTrigger("Close");
         }
+        else {
+            _Animator.SetTrigger("Open");
+        }
+        _Closed = !_Closed;
         _RemainingLockout = InteractionLockOut;
-        _Animator.SetTrigger("Close");
     }
 }
