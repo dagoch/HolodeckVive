@@ -21,7 +21,7 @@ public class DoorController : MonoBehaviour {
         _RemainingLockout -= Time.deltaTime;	
 	}
 
-    void OnDoorColliderEnter(Collider other) {
+    public void Toggle() {
         if (_RemainingLockout > 0f) {
             return;
         }
@@ -33,5 +33,19 @@ public class DoorController : MonoBehaviour {
         }
         _Closed = !_Closed;
         _RemainingLockout = InteractionLockOut;
+    }
+
+    void OnDoorColliderEnter(Collider other) {
+        //if (_RemainingLockout > 0f) {
+        //    return;
+        //}
+        //if (!_Closed) {
+        //    _Animator.SetTrigger("Close");
+        //}
+        //else {
+        //    _Animator.SetTrigger("Open");
+        //}
+        //_Closed = !_Closed;
+        //_RemainingLockout = InteractionLockOut;
     }
 }
