@@ -26,7 +26,7 @@ public class ManipulateDoor : Synchronizable, IGlobalGripPressDownHandler {
 
     public override string Label {
         get {
-            return this.name + "-environmentScaler";
+            return this.name + "-manipulateDoor";
         }
     }
 
