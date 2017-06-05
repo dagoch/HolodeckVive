@@ -212,6 +212,7 @@
     <Compile Include="Assets\Scripts\SceneChanger.cs" />
     <Compile Include="Assets\Scripts\Shrinking.cs" />
     <Compile Include="Assets\Scripts\SizeToggler.cs" />
+    <Compile Include="Assets\Scripts\SyncedProp.cs" />
     <Compile Include="Assets\Scripts\TeaPartySceneController.cs" />
     <Compile Include="Assets\Scripts\TheRoomSceneController.cs" />
     <Compile Include="Assets\Scripts\TimedAppearance.cs" />

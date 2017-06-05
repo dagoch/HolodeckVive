@@ -45,6 +45,9 @@ public class ForceGrabTransform : Synchronizable, IGlobalTriggerPressDownHandler
     protected override void Sync() {
         if (Host) {
             if (_TriggerDown) {
+                //data.ints[0] = 1;
+                //data.vector3s[0] = TargetTransform.localPosition;
+                //data.vector3s[1] = TargetTransform.localRotation.eulerAngles;
                 if (!_HoldingTransform) {
                     _SavedParent = TargetTransform.parent;
                     TargetTransform.parent = transform;
