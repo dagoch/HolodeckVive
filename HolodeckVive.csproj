@@ -147,11 +147,11 @@
     <Compile Include="Assets\Holojam\Tools\ActorTransformRelay.cs" />
     <Compile Include="Assets\Holojam\Tools\Configuration.cs" />
     <Compile Include="Assets\Holojam\Tools\FlakeDebugger.cs" />
+    <Compile Include="Assets\Holojam\Tools\InfoPanel.cs" />
     <Compile Include="Assets\Holojam\Tools\Relay.cs" />
     <Compile Include="Assets\Holojam\Tools\Synchronizable.cs" />
     <Compile Include="Assets\Holojam\Tools\SynchronizableTrackable.cs" />
     <Compile Include="Assets\Holojam\Utility\HolojamUnity.cs" />
-    <Compile Include="Assets\Holojam\Utility\Metrics.cs" />
     <Compile Include="Assets\Holojam\Vive\ViveBuildToggler.cs" />
     <Compile Include="Assets\Holojam\Vive\ViveCalibrator.cs" />
     <Compile Include="Assets\Holojam\Vive\ViveControllerReceiver.cs" />
@@ -186,6 +186,9 @@
     <Compile Include="Assets\InputSystems-master\Vive\IViveHandler.cs" />
     <Compile Include="Assets\InputSystems-master\Vive\ViveControllerModule.cs" />
     <Compile Include="Assets\MedievalTownExteriors\Scripts\ProtectCameraFromWallClip.cs" />
+    <Compile Include="Assets\SceneVisibilityController.cs" />
+    <Compile Include="Assets\Scripts\AppearAndDisappear_Rotation.cs" />
+    <Compile Include="Assets\Scripts\AppearAndDisappear_View.cs" />
     <Compile Include="Assets\Scripts\DoorController.cs" />
     <Compile Include="Assets\Scripts\Extensions\GameObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\Extensions\ListExtension.cs" />
