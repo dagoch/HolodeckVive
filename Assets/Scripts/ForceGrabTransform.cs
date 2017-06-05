@@ -26,7 +26,7 @@ public class ForceGrabTransform : Synchronizable, IGlobalTriggerPressDownHandler
 
     public override string Label {
         get {
-            return this.name + "-environmentScaler";
+            return this.name + "-forceGrab";
         }
     }
 
