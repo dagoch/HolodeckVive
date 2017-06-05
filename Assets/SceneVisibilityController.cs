@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Holojam.Network;
+using UnityEngine.SceneManagement;
 
 public class SceneVisibilityController : MonoBehaviour {
 
@@ -69,16 +70,17 @@ public class SceneVisibilityController : MonoBehaviour {
   void Reset(string source, string scope, Flake data)
   {
     Debug.Log("Reset");
-    // React to reset
-    foreach (AppearAndDisappear_View scr in visibilityScriptsV)
-    {
-      scr.reset();
-    }
-    foreach (AppearAndDisappear_Rotation scr in visibilityScriptsR)
-    {
-      scr.reset();
-    }
-    ResetScaling();
+    SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+    //// React to reset
+    //foreach (AppearAndDisappear_View scr in visibilityScriptsV)
+    //{
+    //  scr.reset();
+    //}
+    //foreach (AppearAndDisappear_Rotation scr in visibilityScriptsR)
+    //{
+    //  scr.reset();
+    //}
+    //ResetScaling();
   }
 
   void ResetScaling()
