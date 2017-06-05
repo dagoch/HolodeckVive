@@ -6,9 +6,11 @@ public class ScaleEnvironmentTester : MonoBehaviour {
 
     public Transform HeadTransform;
     public Transform EnvironmentTransform;
+    public Transform RelativeTransform;
     public float PercentPerUnit;
 
     private Vector3 _DefaultScale;
+    private Vector3 _DefaultPosition;
     private float[] _DefaultLightRanges;
     private bool _TriggerDown;
     private Vector3 _StartScale;
@@ -18,7 +20,8 @@ public class ScaleEnvironmentTester : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        _DefaultScale = EnvironmentTransform.localScale;	
+        _DefaultScale = EnvironmentTransform.localScale;
+        _DefaultPosition = EnvironmentTransform.position;
         var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
         _DefaultLightRanges = new float[lights.Length];
         for (var i = 0; i < lights.Length; i++) {
@@ -49,6 +52,13 @@ public class ScaleEnvironmentTester : MonoBehaviour {
             //var scale = EnvironmentTransform.localScale;
             var scale = _StartScale + (_DefaultScale * diff * PercentPerUnit);
             EnvironmentTransform.localScale = scale;
+
+            var percentDiff = scale.x / _DefaultScale.x;
+            var relativePosition = RelativeTransform.position;
+            relativePosition.y = 0f;
+            var position = Vector3.LerpUnclamped(relativePosition, _DefaultPosition, percentDiff);
+            EnvironmentTransform.position = position;
+
             var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
             for (var i = 0; i < lights.Length; i++) {
                 var range = _DefaultLightRanges[i];

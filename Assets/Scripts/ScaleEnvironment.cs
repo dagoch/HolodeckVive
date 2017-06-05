@@ -9,9 +9,11 @@ public class ScaleEnvironment : Synchronizable, IGlobalTouchpadPressDownHandler,
 
     public Transform HeadTransform;
     public Transform EnvironmentTransform;
+    public Transform RelativeTransform;
     public float PercentPerUnit;
 
     private Vector3 _DefaultScale;
+    private Vector3 _DefaultPosition;
     private float[] _DefaultLightRanges = new float[0];
     private bool _Scaling;
     private Vector3 _StartScale;
@@ -41,11 +43,12 @@ public class ScaleEnvironment : Synchronizable, IGlobalTouchpadPressDownHandler,
     }
 
     public override void ResetData() {
-        data = new Holojam.Network.Flake(1, 0, _DefaultLightRanges.Length, 1);
+        data = new Holojam.Network.Flake(2, 0, _DefaultLightRanges.Length, 1);
     }
 
     public void ResetScales() {
-        _DefaultScale = EnvironmentTransform.localScale;	
+        _DefaultScale = EnvironmentTransform.localScale;
+        _DefaultPosition = EnvironmentTransform.position;
         var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
         _DefaultLightRanges = new float[lights.Length];
         for (var i = 0; i < lights.Length; i++) {
@@ -54,48 +57,49 @@ public class ScaleEnvironment : Synchronizable, IGlobalTouchpadPressDownHandler,
     }
 
     protected override void Sync() {
-    if (Host)
-    {
-      var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
-      if (_Scaling)
-      {
-        // set the first int value to 1 to indicate you are updating scales
-        data.ints[0] = 1;
-        var diff = HeadTransform.position.y - _StartY;
-        var scale = _StartScale + (_DefaultScale * diff * PercentPerUnit);
-        EnvironmentTransform.localScale = scale;
-        for (var i = 0; i < lights.Length; i++)
-        {
-          var range = _DefaultLightRanges[i];
-          lights[i].range = _StartLightRanges[i] + range * diff * PercentPerUnit;
+        if (Host) {
+            var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
+            if (_Scaling) {
+                // set the first int value to 1 to indicate you are updating scales
+                data.ints[0] = 1;
+                var diff = HeadTransform.position.y - _StartY;
+                var scale = _StartScale + (_DefaultScale * diff * PercentPerUnit);
+                EnvironmentTransform.localScale = scale;
+                data.vector3s[0] = EnvironmentTransform.localScale;
+
+                var percentDiff = scale.x / _DefaultScale.x;
+                var relativePosition = RelativeTransform.position;
+                relativePosition.y = 0;
+                var position = Vector3.LerpUnclamped(relativePosition, _DefaultPosition, percentDiff);
+                EnvironmentTransform.position = position;
+                data.vector3s[1] = EnvironmentTransform.position;
+
+                for (var i = 0; i < lights.Length; i++) {
+                    var range = _DefaultLightRanges[i];
+                    lights[i].range = _StartLightRanges[i] + range * diff * PercentPerUnit;
+                }
+                for (var i = 0; i < lights.Length; i++) {
+                    data.floats[i] = lights[i].range;
+                }
+            }
+            else {
+                data.ints[0] = 0;
+            }
         }
-        data.vector3s[0] = EnvironmentTransform.localScale;
-        for (var i = 0; i < lights.Length; i++)
-        {
-          data.floats[i] = lights[i].range;
+        else {
+            // only change scales if the host script is changing them. This is to prevent
+            // multiple different scaling scripts overriding each other
+            if (data.ints[0] == 1) {
+                EnvironmentTransform.localScale = data.vector3s[0];
+                EnvironmentTransform.position = data.vector3s[1];
+                var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
+                for (var i = 0; i < lights.Length; i++) {
+                    lights[i].range = data.floats[i];
+                }
+            }
         }
-      }
-      else
-      {
-        data.ints[0] = 0;
-      }
     }
-    else
-    {
-      // only change scales if the host script is changing them. This is to prevent
-      // multiple different scaling scripts overriding each other
-      if (data.ints[0] == 1)
-      {
-        EnvironmentTransform.localScale = data.vector3s[0];
-        var lights = EnvironmentTransform.GetComponentsInChildren<Light>();
-        for (var i = 0; i < lights.Length; i++)
-        {
-          lights[i].range = data.floats[i];
-        }
-      }
-    }
-  }
-    
+
     void IGlobalTouchpadPressDownHandler.OnGlobalTouchpadPressDown(VREventData eventData) {
         if (Host) {
             _Scaling = true;
