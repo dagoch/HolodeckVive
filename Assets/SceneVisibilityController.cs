@@ -44,14 +44,12 @@ public class SceneVisibilityController : MonoBehaviour {
   {
     Notifier.AddSubscriber(Trigger, "trigger");
     Notifier.AddSubscriber(Reset, "reset");
-    Notifier.AddSubscriber(Debug, "debug");
   }
 
   void OnDisable()
   {
     Notifier.RemoveSubscriber(Trigger, "trigger");
     Notifier.RemoveSubscriber(Reset, "reset");
-    Notifier.RemoveSubscriber(Debug, "debug");
   }
 
   void Trigger(string source, string scope, Flake data)
