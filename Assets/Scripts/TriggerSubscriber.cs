@@ -8,9 +8,12 @@ public class TriggerSubscriber : MonoBehaviour {
 
     private List<Action<Collider>> _EnterActions;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake() {
         _EnterActions = new List<Action<Collider>>();
+    }
+
+    // Use this for initialization
+    void Start () {
 	}
 	
 	// Update is called once per frame
