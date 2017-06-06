@@ -20,7 +20,7 @@ public class FlowerController : Holojam.Tools.Synchronizable, IActivateReceiver 
 
     public override string Label {
         get {
-            return this.name + "-syncedProp";
+            return this.name + "-syncedParticles";
         }
     }
 
