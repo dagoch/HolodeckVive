@@ -40,6 +40,12 @@ public class DoorController : Holojam.Tools.Synchronizable {
         _Animator = GetComponent<Animator>();
     }
 
+    protected override void Update() {
+        base.Update();
+
+        _RemainingLockout -= Time.deltaTime;
+    }
+
     protected override void Sync() {
         if (Host) {
             data.ints[0] = 1;
