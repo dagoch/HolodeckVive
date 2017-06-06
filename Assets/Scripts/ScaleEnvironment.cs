@@ -88,7 +88,9 @@ public class ScaleEnvironment : Synchronizable, IGlobalTouchpadPressDownHandler,
                 data.vector3s[1] = EnvironmentTransform.position;
 
                 for (var i = 0; i < lights.Length; i++) {
-                    var range = _DefaultLightRanges[i];
+                    var defaultRange = _DefaultLightRanges[i];
+                    var range = _StartLightRanges[i] + defaultRange * diff * PercentPerUnit;
+                    range = Mathf.Clamp(range, defaultRange, defaultRange * UpperLimit);
                     lights[i].range = _StartLightRanges[i] + range * diff * PercentPerUnit;
                 }
                 for (var i = 0; i < lights.Length; i++) {

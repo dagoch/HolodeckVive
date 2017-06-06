@@ -7,11 +7,7 @@ public class SyncedProp : Holojam.Tools.Synchronizable {
 
     public int Index;
 
-    public override bool AutoHost {
-        get {
-            return false;
-        }
-    }
+    public override bool AutoHost { get { return false; } }
 
     public override bool Host {
         get {
@@ -26,17 +22,20 @@ public class SyncedProp : Holojam.Tools.Synchronizable {
     }
 
     public override void ResetData() {
-        data = new Holojam.Network.Flake(2, 0, 0, 0);
+        data = new Holojam.Network.Flake(2, 0, 0, 1);
     }
 
     protected override void Sync() {
         if (Host) {
+            data.ints[0] = 1;
             data.vector3s[0] = transform.position;
             data.vector3s[1] = transform.rotation.eulerAngles; 
         }
         else {
-            transform.position = data.vector3s[0];
-            transform.rotation = Quaternion.Euler(data.vector3s[1]);
+            if (data.ints[0] == 1) {
+                transform.position = data.vector3s[0];
+                transform.rotation = Quaternion.Euler(data.vector3s[1]);
+            }
         }
     }
 }
