@@ -6,61 +6,61 @@ using Holojam.Tools;
 using Holojam.Vive;
 using System;
 
-public class ManipulateDoor : Synchronizable, IGlobalGripPressDownHandler {
+public class ManipulateDoor : MonoBehaviour, IGlobalGripPressDownHandler {
 
     public DoorController DoorControl;
 
     private bool _OverlappingDoor;
     private bool _GripDown;
 
-    private ViveControllerReceiver _VCReceiver;
+ //   private ViveControllerReceiver _VCReceiver;
 
-    public override bool Host {
-        get {
-            if (!_VCReceiver) _VCReceiver = GetComponent<ViveControllerReceiver>();
-            return _VCReceiver.index == Holojam.Tools.BuildManager.BUILD_INDEX;
-        }
-    }
+ //   public override bool Host {
+ //       get {
+ //           if (!_VCReceiver) _VCReceiver = GetComponent<ViveControllerReceiver>();
+ //           return _VCReceiver.index == Holojam.Tools.BuildManager.BUILD_INDEX;
+ //       }
+ //   }
 
-    public override bool AutoHost { get { return false; } }
+ //   public override bool AutoHost { get { return false; } }
 
-    public override string Label {
-        get {
-            return this.name + "-manipulateDoor";
-        }
-    }
+ //   public override string Label {
+ //       get {
+ //           return this.name + "-manipulateDoor";
+ //       }
+ //   }
 
-	// Use this for initialization
-	void Start () {
+	//// Use this for initialization
+	//void Start () {
 		
-	}
+	//}
 
-    public override void ResetData() {
-        data = new Holojam.Network.Flake(0, 0, 0, 1);
-    }
+ //   public override void ResetData() {
+ //       data = new Holojam.Network.Flake(0, 0, 0, 1);
+ //   }
 
-    protected override void Sync() {
-        if (Host) {
-            if (_GripDown) {
-                data.ints[0] = 1;
-            }
-            else {
-                data.ints[0] = 0;
-            }
-        }
-        else {
-            _GripDown = (data.ints[0] == 1) ? true : false;
-        }
-        if (_GripDown && _OverlappingDoor) {
-            //_DoorObject.GetComponent<DoorController>().Toggle();
-            DoorControl.Toggle();
-        }
-        _GripDown = false;
-    }
+ //   protected override void Sync() {
+ //       if (Host) {
+ //           if (_GripDown) {
+ //               data.ints[0] = 1;
+ //           }
+ //           else {
+ //               data.ints[0] = 0;
+ //           }
+ //       }
+ //       else {
+ //           _GripDown = (data.ints[0] == 1) ? true : false;
+ //       }
+ //       if (_GripDown && _OverlappingDoor) {
+ //           //_DoorObject.GetComponent<DoorController>().Toggle();
+ //           DoorControl.Toggle();
+ //       }
+ //       _GripDown = false;
+ //   }
 
     void IGlobalGripPressDownHandler.OnGlobalGripPressDown(VREventData eventData) {
-        if (Host) {
-            _GripDown = true; 
+        if (_OverlappingDoor) {
+            DoorControl.Toggle();
         }
     }
 

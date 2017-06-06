@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 114450644346122608}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,7 +138,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4036517365347892}
-  - component: {fileID: 114575151019501804}
   m_Layer: 0
   m_Name: alice_door (1)
   m_TagString: Untagged
@@ -189,9 +188,9 @@ GameObject:
   - component: {fileID: 65838073313134204}
   - component: {fileID: 54921706166386362}
   - component: {fileID: 114768368797489910}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Door Trigger
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -334,8 +333,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1231539653643452}
   m_LocalRotation: {x: -0, y: -0.85625535, z: -0, w: 0.5165528}
-  m_LocalPosition: {x: -0.159, y: 0.975, z: 0.651}
-  m_LocalScale: {x: 0.30234364, y: 0.30234358, z: 0.30234328}
+  m_LocalPosition: {x: -0.17, y: 0.936, z: 0.645}
+  m_LocalScale: {x: 0.3391697, y: 0.33916974, z: 0.3391694}
   m_Children:
   - {fileID: 4990316329512024}
   m_Father: {fileID: 0}
@@ -959,19 +958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DoorSubscriber: {fileID: 114768368797489910}
   InteractionLockOut: 1
---- !u!114 &114575151019501804
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1477630628665918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c069714755e85594c9d46136ab7f1f09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DoorSubscriber: {fileID: 0}
-  InteractionLockOut: 1
+  Index: 2
 --- !u!114 &114768368797489910
 MonoBehaviour:
   m_ObjectHideFlags: 1
