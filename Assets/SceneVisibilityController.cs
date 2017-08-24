@@ -6,7 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneVisibilityController : MonoBehaviour {
 
-  public Transform environmentTransform;
+  //GameObject target needs to have a mesh renderer component attached for this to work
+  public List<GameObject> actorBodyParts = new List<GameObject>();
+
+  Transform environmentTransform;
   List<GameObject> sceneObjects = new List<GameObject>();
   AppearAndDisappear_View[] visibilityScriptsV;
   AppearAndDisappear_Rotation[] visibilityScriptsR;
@@ -45,12 +48,16 @@ public class SceneVisibilityController : MonoBehaviour {
   {
     Notifier.AddSubscriber(Trigger, "trigger");
     Notifier.AddSubscriber(Reset, "reset");
+    Notifier.AddSubscriber(ActivateActors, "activate");
+    Notifier.AddSubscriber(DeactivateActors, "deactivate");
   }
 
   void OnDisable()
   {
     Notifier.RemoveSubscriber(Trigger, "trigger");
     Notifier.RemoveSubscriber(Reset, "reset");
+    Notifier.RemoveSubscriber(ActivateActors, "activate");
+    Notifier.RemoveSubscriber(DeactivateActors, "deactivate");
   }
 
   void Trigger(string source, string scope, Flake data)
@@ -88,5 +95,23 @@ public class SceneVisibilityController : MonoBehaviour {
     environmentTransform.position = _startPosition;
 
     environmentTransform.localScale = _startScale;
+  }
+
+  void ActivateActors(string source, string scope, Flake data)
+  {
+    Debug.Log("Activate actors");
+    foreach (GameObject target in actorBodyParts)
+    {
+      target.SetActive(true);
+    }
+  }
+
+  void DeactivateActors(string source, string scope, Flake data)
+  {
+    Debug.Log("Deactivate actors");
+    foreach (GameObject target in actorBodyParts)
+    {
+      target.SetActive(false);
+    }
   }
 }
