@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4674810705287164}
   - component: {fileID: 33019445992861176}
   - component: {fileID: 23548955931767842}
+  - component: {fileID: 114013317146064006}
   m_Layer: 0
   m_Name: TrackedSpaceOverlay
   m_TagString: Untagged
@@ -35,8 +36,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1784138743060274}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.524, z: 0}
-  m_LocalScale: {x: 6.1, y: 3.048, z: 6.1}
+  m_LocalPosition: {x: 0, y: 1.54, z: 0}
+  m_LocalScale: {x: 6.096, y: 3.048, z: 6.096}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -54,7 +55,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: fcd817bc284073d4a89bfa998108bf29, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80,3 +81,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1784138743060274}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114013317146064006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1784138743060274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f88c5e8527012441b9c921d22ff8adb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.35686275, g: 0.627451, b: 0.7686275, a: 0.272}
+  grain: {x: 0.1, y: 0.1, z: 0.1}
+  width: {x: 0.03, y: 0.03, z: 0.03}

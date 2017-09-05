@@ -47,7 +47,7 @@
 				v2f o;
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				float3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
-				o.wpos = worldPos;
+				o.wpos = v.vertex;//worldPos;
 				return o;
 			}
 			
