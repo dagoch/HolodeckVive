@@ -1,0 +1,54 @@
+# 
+# Wavefront material file
+# Converted by the DEEP Exploration  Deep Exploration 6.5 x64 6.5.0.9182
+# Right Hemisphere, LTD
+# http://www.righthemisphere.com/
+# 
+
+newmtl Camco_red_and_white_picnic_blan
+Ka 0.5 0.5 0.5
+Kd 1 1 1
+Ks 1 1 1
+illum 2
+Ns 256
+map_Kd Camco_red_and_white_picnic_blanket_DIFFUSE_1.png
+map_bump Camco_red_and_white_picnic_blanket_REFLECT_1.png
+bump Camco_red_and_white_picnic_blanket_REFLECT_1.png
+map_opacity 
+map_d 
+refl 
+map_kS Camco_red_and_white_picnic_blanket_REFLECT_1.png
+map_kA 
+map_Ns 
+
+newmtl handle
+Ka 0.5 0.5 0.5
+Kd 1 1 1
+Ks 1 1 1
+illum 2
+Ns 181.019
+map_Kd handle_DIFFUSE.png
+map_bump handle_REFLECT.png
+bump handle_REFLECT.png
+map_opacity 
+map_d 
+refl 
+map_kS handle_REFLECT.png
+map_kA 
+map_Ns 
+
+newmtl contour
+Ka 0.5 0.5 0.5
+Kd 1 1 1
+Ks 1 1 1
+illum 2
+Ns 103.968
+map_Kd contour_DIFFUSE.png
+map_bump contour_REFLECT.png
+bump contour_REFLECT.png
+map_opacity 
+map_d 
+refl 
+map_kS contour_REFLECT.png
+map_kA 
+map_Ns 

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scene/sandbox.unity
+    guid: d18ca5a2e70c397429b6de75151d1900
+  - enabled: 0
+    path: Assets/Scene/trygrab2.unity
+    guid: 9e718695116c14e428f40d209d0cc664
+  - enabled: 0
+    path: Assets/Scene/SyncedScaleTest.unity
+    guid: 988795902659d0343b41b3041c9d739e
+  - enabled: 0
+    path: Assets/Scene/testgrabscene.unity
+    guid: 0cc60f17c9db53f4e83050228710357c
+  - enabled: 0
+    path: Assets/Scene/transformlab.unity
+    guid: d812863e8b7e9204d8a245d62ef384d0
+  - enabled: 0
+    path: Assets/Scene/alice-demo-v1.unity
+    guid: 5157a819668ae9140a7d4bd64daf85a2
+  - enabled: 1
+    path: Assets/alice-demo-v1a.unity
+    guid: d3906b061d0737146997e083eb65f456
